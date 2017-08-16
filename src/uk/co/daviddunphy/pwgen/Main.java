@@ -1,3 +1,4 @@
+package uk.co.daviddunphy.pwgen;
 
 public class Main {
 	
