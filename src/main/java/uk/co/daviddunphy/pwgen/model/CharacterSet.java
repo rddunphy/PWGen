@@ -7,6 +7,10 @@ public interface CharacterSet {
 
     public Set<Character> getCharacters();
 
+    public void addAll(CharacterSet key);
+
+    public void removeAll(CharacterSet charSet);
+
     public boolean isAlphanumeric();
 
     public boolean isAlphabetic();

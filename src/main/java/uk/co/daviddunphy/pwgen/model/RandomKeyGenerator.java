@@ -24,7 +24,7 @@ class RandomKeyGenerator implements KeyGenerator {
     private List<Character> generateCharacters() {
         List<Character> chars = new ArrayList<>();
         for (CharacterSet characterSet : profile.getCharacterSets()) {
-            if (profile.getCharacterSetUsage(characterSet) == USAGE.REQUIRED) {
+            if (profile.getUsage(characterSet) == USAGE.REQUIRED) {
                 chars.add(chooseRandomCharacter(characterSet));
             }
         }

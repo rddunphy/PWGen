@@ -1,12 +1,16 @@
 package uk.co.daviddunphy.pwgen.model;
 
-import java.util.Set;
-
 public interface KeyProfile {
 
-    public USAGE getCharacterSetUsage(CharacterSet characterSet);
+    public void setUsage(CharacterSet charSet, USAGE usage);
 
-    public Set<CharacterSet> getCharacterSets();
+    public USAGE getUsage(CharacterSet charSet);
+
+    public USAGE getUsage(char ch);
+
+    public CharacterSet getRequiredCharacterSet();
+
+    public CharacterSet getOptionalCharacterSet();
 
     public CharacterSet getCombinedCharacterSet();
 
@@ -15,5 +19,7 @@ public interface KeyProfile {
     public int getMaxLength();
 
     public boolean isAlphabeticStart();
+
+    public boolean matches(String key);
 
 }

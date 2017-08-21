@@ -25,8 +25,18 @@ class CharacterSetImpl implements CharacterSet {
     public CharacterSetImpl(CharacterSet... characterSets) {
         this.characters = new HashSet<>();
         for (CharacterSet set : characterSets) {
-            this.characters.addAll(set.getCharacters());
+            addAll(set);
         }
+    }
+
+    @Override
+    public void addAll(CharacterSet charSet) {
+        characters.addAll(charSet.getCharacters());
+    }
+
+    @Override
+    public void removeAll(CharacterSet charSet) {
+        characters.removeAll(charSet.getCharacters());
     }
 
     @Override
