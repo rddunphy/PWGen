@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 class RandomKeyGenerator implements KeyGenerator {
 
@@ -15,8 +16,9 @@ class RandomKeyGenerator implements KeyGenerator {
     }
 
     private Character chooseRandomCharacter(CharacterSet set) {
-        List<Character> chars = set.getCharacters();
-        return chars.get(rng.nextInt(chars.size()));
+        Set<Character> chars = set.getCharacters();
+        int index = rng.nextInt(chars.size());
+        return chars.toArray(new Character[chars.size()])[index];
     }
 
     private List<Character> generateCharacters() {
@@ -26,9 +28,10 @@ class RandomKeyGenerator implements KeyGenerator {
                 chars.add(chooseRandomCharacter(characterSet));
             }
         }
-        int minLength = chars.size() < profile.getMinLength() ? profile.getMinLength() : chars.size();
-        int maxLength = chars.size() < profile.getMaxLength() ? profile.getMaxLength() : chars.size();
-        int length = rng.nextInt(maxLength + 1 - minLength) + minLength;
+        int length = chars.size();
+        int minLength = length < profile.getMinLength() ? profile.getMinLength() : length;
+        int maxLength = length < profile.getMaxLength() ? profile.getMaxLength() : length;
+        length = rng.nextInt(maxLength + 1 - minLength) + minLength;
         while (chars.size() < length) {
             chars.add(chooseRandomCharacter(profile.getCombinedCharacterSet()));
         }
@@ -37,8 +40,8 @@ class RandomKeyGenerator implements KeyGenerator {
 
     private String assembleCharaters(List<Character> characters) {
         Collections.shuffle(characters, rng);
-        if (profile.isAlphabeticStart() && CharacterSets.containsAlphabeticCharacter(characters)) {
-            while (!CharacterSets.isAlphabeticCharacter(characters.get(0))) {
+        if (profile.isAlphabeticStart() && new CharacterSetImpl(characters).containsAlphabeticCharacter()) {
+            while (!CharacterSets.ALPHABETIC.contains(characters.get(0))) {
                 Collections.shuffle(characters, rng);
             }
         }

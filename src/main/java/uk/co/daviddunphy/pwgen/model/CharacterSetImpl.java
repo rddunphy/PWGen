@@ -1,46 +1,36 @@
 package uk.co.daviddunphy.pwgen.model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 class CharacterSetImpl implements CharacterSet {
 
-    private List<Character> characters;
+    private Set<Character> characters;
 
     public CharacterSetImpl(String characters) {
-        this.characters = new ArrayList<>();
+        this.characters = new HashSet<>();
         for (char ch : characters.toCharArray()) {
-            if (!contains(ch)) {
-                this.characters.add(ch);
-            }
+            this.characters.add(ch);
         }
     }
 
     public CharacterSetImpl(Collection<Character> characters) {
-        this.characters = new ArrayList<>();
-        for (char ch : characters) {
-            if (!contains(ch)) {
-                this.characters.add(ch);
-            }
-        }
+        this.characters = new HashSet<>();
+        this.characters.addAll(characters);
     }
 
     public CharacterSetImpl(CharacterSet... characterSets) {
-        this.characters = new ArrayList<>();
+        this.characters = new HashSet<>();
         for (CharacterSet set : characterSets) {
-            for (char ch : set.getCharacters()) {
-                if (!contains(ch)) {
-                    this.characters.add(ch);
-                }
-            }
+            this.characters.addAll(set.getCharacters());
         }
     }
 
     @Override
-    public List<Character> getCharacters() {
+    public Set<Character> getCharacters() {
         return characters;
     }
 
@@ -57,6 +47,16 @@ class CharacterSetImpl implements CharacterSet {
     @Override
     public boolean isNumeric() {
         return CharacterSets.NUMERIC.containsAll(this);
+    }
+
+    @Override
+    public boolean containsAlphabeticCharacter() {
+        for (char ch : characters) {
+            if (CharacterSets.ALPHABETIC.contains(ch)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -95,7 +95,7 @@ class CharacterSetImpl implements CharacterSet {
             return false;
         }
         CharacterSet c = (CharacterSet) o;
-        return c.getCharacters().equals(characters);
+        return c.containsAll(characters) && this.containsAll(c.getCharacters());
     }
 
 }
