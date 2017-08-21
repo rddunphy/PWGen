@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
-public class CharacterSetImpl implements CharacterSet {
+class CharacterSetImpl implements CharacterSet {
 
     private List<Character> characters;
 

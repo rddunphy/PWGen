@@ -5,7 +5,7 @@ import static uk.co.daviddunphy.pwgen.model.USAGE.EXCLUDED;
 import java.util.Map;
 import java.util.Set;
 
-public class KeyProfileImpl implements KeyProfile {
+class KeyProfileImpl implements KeyProfile {
 
     private Map<CharacterSet, USAGE> characterSetUsages;
     private int minLength;
@@ -19,6 +19,7 @@ public class KeyProfileImpl implements KeyProfile {
         this.alphabeticStart = alphabeticStart;
     }
 
+    @Override
     public USAGE getCharacterSetUsage(CharacterSet characterSet) {
         if (characterSetUsages.containsKey(characterSet)) {
             return characterSetUsages.get(characterSet);
@@ -27,23 +28,28 @@ public class KeyProfileImpl implements KeyProfile {
         }
     }
 
+    @Override
     public Set<CharacterSet> getCharacterSets() {
         return characterSetUsages.keySet();
     }
 
+    @Override
     public CharacterSet getCombinedCharacterSet() {
         Set<CharacterSet> sets = getCharacterSets();
         return new CharacterSetImpl(sets.toArray(new CharacterSet[sets.size()]));
     }
 
+    @Override
     public int getMinLength() {
         return minLength;
     }
 
+    @Override
     public int getMaxLength() {
         return maxLength;
     }
 
+    @Override
     public boolean isAlphabeticStart() {
         return alphabeticStart;
     }

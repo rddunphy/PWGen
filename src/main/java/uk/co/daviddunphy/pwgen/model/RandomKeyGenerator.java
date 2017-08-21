@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class RandomKeyGenerator implements KeyGenerator {
+class RandomKeyGenerator implements KeyGenerator {
 
     private static Random rng = new Random();
     private KeyProfile profile;
