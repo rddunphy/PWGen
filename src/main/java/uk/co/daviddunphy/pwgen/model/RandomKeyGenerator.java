@@ -37,6 +37,11 @@ public class RandomKeyGenerator implements KeyGenerator {
 
     private String assembleCharaters(List<Character> characters) {
         Collections.shuffle(characters, rng);
+        if (profile.isAlphabeticStart() && CharacterSets.containsAlphabeticCharacter(characters)) {
+            while (!CharacterSets.isAlphabeticCharacter(characters.get(0))) {
+                Collections.shuffle(characters, rng);
+            }
+        }
         StringBuilder builder = new StringBuilder(characters.size());
         for (char ch : characters) {
             builder.append(ch);

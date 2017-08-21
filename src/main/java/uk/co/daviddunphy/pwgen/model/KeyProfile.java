@@ -10,11 +10,13 @@ public class KeyProfile {
     private Map<CharacterSet, USAGE> characterSetUsages;
     private int minLength;
     private int maxLength;
+    private boolean alphabeticStart;
 
-    public KeyProfile(Map<CharacterSet, USAGE> characterSetUsages, int minLength, int maxLength) {
+    public KeyProfile(Map<CharacterSet, USAGE> characterSetUsages, int minLength, int maxLength, boolean alphabeticStart) {
         this.characterSetUsages = characterSetUsages;
         this.minLength = minLength;
         this.maxLength = maxLength;
+        this.alphabeticStart = alphabeticStart;
     }
 
     public USAGE getCharacterSetUsage(CharacterSet characterSet) {
@@ -42,8 +44,8 @@ public class KeyProfile {
         return maxLength;
     }
 
-    public boolean isStartAlpha() {
-        return false; // TODO
+    public boolean isAlphabeticStart() {
+        return alphabeticStart;
     }
 
 }
