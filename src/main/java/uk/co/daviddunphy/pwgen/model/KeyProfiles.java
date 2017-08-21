@@ -22,6 +22,6 @@ public class KeyProfiles {
         defaultUsages.put(NUMERIC, REQUIRED);
     }
 
-    public static final KeyProfile DEFAULT = new KeyProfile(defaultUsages, 10, 12, true);
+    public static final KeyProfile DEFAULT = new KeyProfileImpl(defaultUsages, 10, 12, true);
 
 }
