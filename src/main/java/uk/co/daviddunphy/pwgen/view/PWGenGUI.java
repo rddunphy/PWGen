@@ -1,4 +1,4 @@
-package uk.co.daviddunphy.pwgen;
+package uk.co.daviddunphy.pwgen.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -28,6 +28,8 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import uk.co.daviddunphy.pwgen.OldKeyGenerator;
+
 public class PWGenGUI {
 
 	// Static fields
@@ -39,7 +41,7 @@ public class PWGenGUI {
 
 	// Private fields
 	private JFrame frame;
-	private KeyGenerator gen;
+	private OldKeyGenerator gen;
 	private JSpinner minField;
 	private JSpinner maxField;
 	private JCheckBox startCB;
@@ -54,7 +56,7 @@ public class PWGenGUI {
 	 * Create a new PWGen GUI
 	 */
 	public PWGenGUI() {
-		gen = new KeyGenerator();
+		gen = new OldKeyGenerator();
 		makeFrame();
 	}
 
@@ -374,10 +376,10 @@ public class PWGenGUI {
 		radio.setAccelerator(KeyStroke.getKeyStroke("ctrl 1"));
 		radio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setType(KeyGenerator.PASSWORD);
+				setType(OldKeyGenerator.PASSWORD);
 			}
 		});
-		if (gen.getDefaultType() == KeyGenerator.PASSWORD) {
+		if (gen.getDefaultType() == OldKeyGenerator.PASSWORD) {
 			radio.setSelected(true);
 		}
 		group.add(radio);
@@ -388,10 +390,10 @@ public class PWGenGUI {
 		radio.setAccelerator(KeyStroke.getKeyStroke("ctrl 2"));
 		radio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setType(KeyGenerator.SIMPLE);
+				setType(OldKeyGenerator.SIMPLE);
 			}
 		});
-		if (gen.getDefaultType() == KeyGenerator.SIMPLE) {
+		if (gen.getDefaultType() == OldKeyGenerator.SIMPLE) {
 			radio.setSelected(true);
 		}
 		group.add(radio);
@@ -402,10 +404,10 @@ public class PWGenGUI {
 		radio.setAccelerator(KeyStroke.getKeyStroke("ctrl 3"));
 		radio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setType(KeyGenerator.SECURE);
+				setType(OldKeyGenerator.SECURE);
 			}
 		});
-		if (gen.getDefaultType() == KeyGenerator.SECURE) {
+		if (gen.getDefaultType() == OldKeyGenerator.SECURE) {
 			radio.setSelected(true);
 		}
 		group.add(radio);
@@ -416,10 +418,10 @@ public class PWGenGUI {
 		radio.setAccelerator(KeyStroke.getKeyStroke("ctrl 4"));
 		radio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setType(KeyGenerator.EXTRA);
+				setType(OldKeyGenerator.EXTRA);
 			}
 		});
-		if (gen.getDefaultType() == KeyGenerator.EXTRA) {
+		if (gen.getDefaultType() == OldKeyGenerator.EXTRA) {
 			radio.setSelected(true);
 		}
 		group.add(radio);
@@ -430,10 +432,10 @@ public class PWGenGUI {
 		radio.setAccelerator(KeyStroke.getKeyStroke("ctrl 5"));
 		radio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setType(KeyGenerator.PIN);
+				setType(OldKeyGenerator.PIN);
 			}
 		});
-		if (gen.getDefaultType() == KeyGenerator.PIN) {
+		if (gen.getDefaultType() == OldKeyGenerator.PIN) {
 			radio.setSelected(true);
 		}
 		group.add(radio);
@@ -444,10 +446,10 @@ public class PWGenGUI {
 		customRadio.setAccelerator(KeyStroke.getKeyStroke("ctrl 6"));
 		customRadio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setType(KeyGenerator.CUSTOM);
+				setType(OldKeyGenerator.CUSTOM);
 			}
 		});
-		if (gen.getDefaultType() == KeyGenerator.CUSTOM) {
+		if (gen.getDefaultType() == OldKeyGenerator.CUSTOM) {
 			customRadio.setSelected(true);
 		}
 		group.add(customRadio);

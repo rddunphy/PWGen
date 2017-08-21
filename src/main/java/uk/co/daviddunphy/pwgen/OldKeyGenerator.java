@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
-public class KeyGenerator {
+public class OldKeyGenerator {
 
 	public static int PASSWORD = 0;
 	public static int SIMPLE = 1;
@@ -41,7 +41,7 @@ public class KeyGenerator {
 	private boolean customSpecial;
 	private String customSpecialChars;
 
-	public KeyGenerator() {
+	public OldKeyGenerator() {
 		initialiseCharSets();
 		loadState();
 		setToDefault();

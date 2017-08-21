@@ -1,4 +1,4 @@
-package uk.co.daviddunphy.pwgen;
+package uk.co.daviddunphy.pwgen.model;
 
 public enum USAGE {
 
