@@ -13,17 +13,28 @@ public class CharacterSetImpl implements CharacterSet {
     public CharacterSetImpl(String characters) {
         this.characters = new ArrayList<>();
         for (char ch : characters.toCharArray()) {
-            if (!this.characters.contains(ch)) {
+            if (!contains(ch)) {
                 this.characters.add(ch);
             }
         }
     }
 
     public CharacterSetImpl(Collection<Character> characters) {
-        this.characters = new ArrayList<>(characters);
+        this.characters = new ArrayList<>();
         for (char ch : characters) {
-            if (!this.characters.contains(ch)) {
+            if (!contains(ch)) {
                 this.characters.add(ch);
+            }
+        }
+    }
+
+    public CharacterSetImpl(CharacterSet... characterSets) {
+        this.characters = new ArrayList<>();
+        for (CharacterSet set : characterSets) {
+            for (char ch : set.getCharacters()) {
+                if (!contains(ch)) {
+                    this.characters.add(ch);
+                }
             }
         }
     }
@@ -31,6 +42,41 @@ public class CharacterSetImpl implements CharacterSet {
     @Override
     public List<Character> getCharacters() {
         return characters;
+    }
+
+    @Override
+    public boolean isAlphanumeric() {
+        return CharacterSets.ALPHANUMERIC.containsAll(this);
+    }
+
+    @Override
+    public boolean isAlphabetic() {
+        return CharacterSets.ALPHABETIC.containsAll(this);
+    }
+
+    @Override
+    public boolean isNumeric() {
+        return CharacterSets.NUMERIC.containsAll(this);
+    }
+
+    @Override
+    public boolean contains(char ch) {
+        return this.characters.contains(ch);
+    }
+
+    @Override
+    public boolean containsAll(Collection<Character> chars) {
+        return this.characters.containsAll(chars);
+    }
+
+    @Override
+    public boolean containsAll(CharacterSet chars) {
+        return this.containsAll(chars.getCharacters());
+    }
+
+    @Override
+    public int size() {
+        return this.characters.size();
     }
 
     @Override

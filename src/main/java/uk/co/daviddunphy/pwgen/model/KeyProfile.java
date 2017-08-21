@@ -29,6 +29,11 @@ public class KeyProfile {
         return characterSetUsages.keySet();
     }
 
+    public CharacterSet getCombinedCharacterSet() {
+        Set<CharacterSet> sets = getCharacterSets();
+        return new CharacterSetImpl(sets.toArray(new CharacterSet[sets.size()]));
+    }
+
     public int getMinLength() {
         return minLength;
     }

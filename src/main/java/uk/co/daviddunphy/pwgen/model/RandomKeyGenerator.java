@@ -30,7 +30,7 @@ public class RandomKeyGenerator implements KeyGenerator {
         int maxLength = chars.size() < profile.getMaxLength() ? profile.getMaxLength() : chars.size();
         int length = rng.nextInt(maxLength + 1 - minLength) + minLength;
         while (chars.size() < length) {
-            chars.add(chooseRandomCharacter(CharacterSets.combine(profile.getCharacterSets())));
+            chars.add(chooseRandomCharacter(profile.getCombinedCharacterSet()));
         }
         return chars;
     }
